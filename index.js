@@ -8,6 +8,35 @@ const newGameBtn = document.getElementById('newGame');
 const disMsg = document.querySelector('span')
 const selectBtn = document.getElementById('select')
 const userInput = document.querySelector('input');
+const userRock = document.getElementById('userRock')
+const userPaper = document.getElementById('userPaper');
+const userScissors = document.getElementById('userScissors')
+const chooseTxt = document.getElementById('choose')
+
+
+userRock.onclick = function() {
+  $(userPaper).fadeOut();
+  $(userScissors).fadeOut();
+  $(chooseTxt).fadeOut();
+
+  $(newGameBtn).fadeIn(2000);
+}
+
+userPaper.onclick = function() {
+  $(userRock).fadeOut();
+  $(userScissors).fadeOut();
+  $(chooseTxt).fadeOut();
+
+  $(newGameBtn).fadeIn(2000);
+}
+
+userScissors.onclick = function() {
+  $(userPaper).fadeOut();
+  $(userRock).fadeOut();
+  $(chooseTxt).fadeOut();
+
+  $(newGameBtn).fadeIn(2000);
+}
 
 $(newGameBtn).hide();
 
@@ -63,24 +92,24 @@ function computerPlay() {
   }
 }
 
+// selectBtn.onclick = function() {
+//     const inputVal = userInput.value;
+//     userInput.value = '';
 
-
-selectBtn.onclick = function() {
-    const inputVal = userInput.value;
-    userInput.value = '';
-
-    if(inputVal.toLowerCase() !== 'rock' && inputVal.toLowerCase() !== 'paper' && inputVal.toLowerCase() !== 'scissors') {
-        createMessage = 'Please make a proper selection.'
-    } else {
-        playerChoice = inputVal.substring(0, 1).toUpperCase() + inputVal.substring(1);
-    }
-    return playRound()
-}
+//     if(inputVal.toLowerCase() !== 'rock' && inputVal.toLowerCase() !== 'paper' && inputVal.toLowerCase() !== 'scissors') {
+//         createMessage = 'Please make a proper selection.'
+//     } else {
+//         playerChoice = inputVal.substring(0, 1).toUpperCase() + inputVal.substring(1);
+//     }
+//     return playRound()
+// }
 
 newGameBtn.onclick = function() {
-    playerChoice = ''; 
-
-    $(disMsg).fadeOut(50)
-    $(selectBtn).fadeIn(800)
-    $(newGameBtn).fadeOut(100)
+  $(chooseTxt).fadeIn();
+  $(userScissors).fadeIn();
+  $(userRock).fadeIn();
+  $(userPaper).fadeIn();
+  
+  $(newGameBtn).fadeOut(100)
+    
 }
