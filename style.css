@@ -1,0 +1,33 @@
+body {
+    background: #bdc3c7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#gameArea {
+    display: grid;
+    justify-items: center;
+    padding: 150px 10px;
+}
+input {
+    margin: 20px;
+}
+span {
+    text-align: center;
+    justify-items: center;
+    margin: 5px;
+    font-family: 'Rowdies',;
+}
+#newGame, #select {
+    margin: 10px;
+}
+#title {
+    font-family: 'Rowdies', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 100px;
+    margin: -10px;
+}
+p {
+    font-family: 'Rowdies', Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 10px;
+}
