@@ -1,3 +1,8 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
 body {
     background: #bdc3c7;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
@@ -6,7 +11,7 @@ body {
 #gameArea {
     display: grid;
     justify-items: center;
-    padding: 150px 10px;
+    padding: 75px 10px;
 }
 input {
     margin: 20px;
@@ -24,14 +29,44 @@ span {
     font-family: 'Rowdies', Arial, Helvetica, sans-serif;
     font-weight: 700;
     font-size: 100px;
-    margin: -10px;
+    margin: -10px;   
 }
+
 p {
     font-family: 'Rowdies', Arial, Helvetica, sans-serif;
     font-weight: 100;
     font-size: 10px;
     margin-top: -30px;
 }
-#choose {
+#choose{
     font-size: 30px;
+}
+span {
+    font-family: 'Rowdies', Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+}
+#scoreBoard {
+    padding-top: 75px;
+}
+#compBoard{
+    outline: solid black 1px;
+    height: auto;
+    width: auto;
+    float: left;
+    padding: 10PX 10px 30px 10px;
+    
+    margin: 10px;
+}
+#playerBoard {
+    outline: solid black 1px;
+    height: auto;
+    width: auto;
+    float: left;
+    padding: 10px 17px 30px 17px;
+    
+    margin: 10px;
+}
+#series {
+    margin: 0px 0px 0px 50px;
 }

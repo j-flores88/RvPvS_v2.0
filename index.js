@@ -1,47 +1,68 @@
 // if($){
 //     alert('Success!')
 // }
-let playerChoice = ''
+let playerChoice
 let createMessage = ''
 
 const newGameBtn = document.getElementById('newGame');
 const disMsg = document.querySelector('span')
-const selectBtn = document.getElementById('select')
-const userInput = document.querySelector('input');
+
 const userRock = document.getElementById('userRock')
 const userPaper = document.getElementById('userPaper');
 const userScissors = document.getElementById('userScissors')
+
 const chooseTxt = document.getElementById('choose')
+
+const compRock = document.getElementById('compRock');
+const compPaper = document.getElementById('compPaper');
+const compScissors = document.getElementById('compScissors');
 
 
 userRock.onclick = function() {
-  $(userPaper).fadeOut();
-  $(userScissors).fadeOut();
+  playerChoice = 'Rock'
+  
+  $(userPaper).fadeOut(500);
+  $(userScissors).fadeOut(500);
   $(chooseTxt).fadeOut();
 
   $(newGameBtn).fadeIn(2000);
+
+  playRound()
 }
 
 userPaper.onclick = function() {
-  $(userRock).fadeOut();
-  $(userScissors).fadeOut();
+  playerChoice = 'Paper'
+  
+  $(userRock).fadeOut(500);
+  $(userScissors).fadeOut(500);
   $(chooseTxt).fadeOut();
 
   $(newGameBtn).fadeIn(2000);
+
+  playRound()
 }
 
 userScissors.onclick = function() {
-  $(userPaper).fadeOut();
-  $(userRock).fadeOut();
+  playerChoice = 'Scissors'
+  
+  $(userPaper).fadeOut(500);
+  $(userRock).fadeOut(500);
   $(chooseTxt).fadeOut();
 
   $(newGameBtn).fadeIn(2000);
+
+  playRound()
 }
 
 $(newGameBtn).hide();
+$(compRock).hide();
+$(compPaper).hide();
+$(compScissors).hide();
 
 function playRound() {
     let computerChoice = computerPlay()
+
+
 
     if(computerChoice === playerChoice) {
         createMessage = computerChoice + ' vs ' + playerChoice + ', it\'s a tie!';
@@ -61,20 +82,20 @@ function playRound() {
         createMessage = 'Please make a proper selection.'
       }
 
+      if(computerChoice === 'Rock') {
+        $(compRock).fadeIn(1000);
+      } else if (computerChoice === 'Paper') {
+        $(compPaper).fadeIn(1000);
+      } else if(computerChoice === 'Scissors') {
+        $(compScissors).fadeIn(1000);
+      }
+
       return createMessage, alertMessage()
 }
 function alertMessage() {
-       
-    if(createMessage !== 'Please make a proper selection.') {
-        $(selectBtn).fadeOut(100)
-        $(newGameBtn).fadeIn(700)  
-
-        disMsg.textContent = createMessage;
-        $(disMsg).fadeIn(100)
-    } else {
         disMsg.textContent = createMessage
-        $(disMsg).fadeIn(200)
-    }
+        $(disMsg).fadeIn(2000)
+    
 }
 
 function getRanNum() {
@@ -90,6 +111,13 @@ function computerPlay() {
     if(choice === i)
     return possOutcome[i]
   }
+}
+
+function gameScore() {
+  compScore = 0;
+  userScore = 0;
+
+  
 }
 
 // selectBtn.onclick = function() {
@@ -109,7 +137,12 @@ newGameBtn.onclick = function() {
   $(userScissors).fadeIn();
   $(userRock).fadeIn();
   $(userPaper).fadeIn();
-  
+
+  $(compRock).hide();
+  $(compScissors).hide();
+  $(compPaper).hide();
+
   $(newGameBtn).fadeOut(100)
+  $(disMsg).hide();
     
 }
