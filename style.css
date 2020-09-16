@@ -22,7 +22,7 @@ span {
     margin: 5px;
     font-family: 'Rowdies',;
 }
-#newGame, #select {
+#newGame, #select, #newSeries {
     margin: 10px;
 }
 #title {
@@ -69,4 +69,13 @@ span {
 }
 #series {
     margin: 0px 0px 0px 50px;
+}
+#compScore {
+    padding: 15px;
+    font-size: 35px;
+
+}
+#playerScore {
+    padding: 10px;
+    font-size: 35px;
 }
