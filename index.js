@@ -7,6 +7,7 @@ let losses = 0
 let wins = 0
 let rounds = 0
 
+
 const newGameBtn = document.getElementById('newGame');
 const newSeriesBtn = document.getElementById('newSeries')
 const disMsg = document.querySelector('span')
@@ -17,6 +18,7 @@ const userScissors = document.getElementById('userScissors')
 
 const chooseTxt = document.getElementById('choose')
 
+const compChoices = document.getElementById('compChoices')
 const compRock = document.getElementById('compRock');
 const compPaper = document.getElementById('compPaper');
 const compScissors = document.getElementById('compScissors');
@@ -53,12 +55,14 @@ userScissors.onclick = function() {
   $(newGameBtn).fadeIn(2000);
     return playRound(), roundScore()
 }
-
+$(compChoices).hide();
 $(newGameBtn).hide();
 $(newSeriesBtn).hide();
 $(compRock).hide();
 $(compPaper).hide();
 $(compScissors).hide();
+compScore.textContent = '-'
+playerScore.textContent = '-'
 
 
 function playRound() {
@@ -82,10 +86,13 @@ function playRound() {
       }
 
       if(computerChoice === 'Rock') {
+        $(compChoices).show()
         $(compRock).fadeIn(1000);
       } else if (computerChoice === 'Paper') {
+        $(compChoices).show()
         $(compPaper).fadeIn(1000);
       } else if(computerChoice === 'Scissors') {
+        $(compChoices).show()
         $(compScissors).fadeIn(1000);
       }
 
@@ -152,16 +159,19 @@ function roundScore() {
 
 newGameBtn.onclick = function() {
   $(chooseTxt).fadeIn();
+  
   $(userScissors).fadeIn();
   $(userRock).fadeIn();
   $(userPaper).fadeIn();
 
+  $(compChoices).hide()
   $(compRock).hide();
   $(compScissors).hide();
   $(compPaper).hide();
 
-  $(newGameBtn).fadeOut(100)
+  $(newGameBtn).fadeOut(10)
   $(disMsg).hide(); 
+  
 }
 newSeriesBtn.onclick = function() {
   $(chooseTxt).fadeIn();
@@ -169,16 +179,18 @@ newSeriesBtn.onclick = function() {
   $(userRock).fadeIn();
   $(userPaper).fadeIn();
 
+  $(compChoices).hide()
   $(compRock).hide();
   $(compScissors).hide();
   $(compPaper).hide();
   $(disMsg).hide(); 
   $(newSeriesBtn).hide();
+  
 
   rounds = 0;
   wins = 0;
   losses = 0;
 
-  compScore.textContent = ''
-  playerScore.textContent = ''
+  compScore.textContent = '-'
+  playerScore.textContent = '-'
 }
