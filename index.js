@@ -1,116 +1,101 @@
-// if($){
-//     alert('Success!')
-// }
-let playerChoice
-let createMessage = ''
-let losses = 0
-let wins = 0
-let rounds = 0
-
+let playerChoice;
+let createMessage = '';
+let rounds = 0;
 
 const newGameBtn = document.getElementById('newGame');
-const newSeriesBtn = document.getElementById('newSeries')
-const disMsg = document.querySelector('span')
+const newSeriesBtn = document.getElementById('newSeries');
+const disMsg = document.querySelector('span');
+const chooseTxt = document.getElementById('choose');
+const compChoices = document.getElementById('compChoices');
 
-const userRock = document.getElementById('userRock')
-const userPaper = document.getElementById('userPaper');
-const userScissors = document.getElementById('userScissors')
+const user = {
+  rock: document.getElementById('userRock'),
+  paper: document.getElementById('userPaper'),
+  scissors: userScissors = document.getElementById('userScissors'),
+  score: document.getElementById('playerScore'),
+  wins: 0
+};
 
-const chooseTxt = document.getElementById('choose')
+const comp = {
+  rock: document.getElementById('compRock'),
+  paper: document.getElementById('compPaper'),
+  scissors: document.getElementById('compScissors'),
+  score: document.getElementById('compScore'),
+  wins: 0
+};
 
-const compChoices = document.getElementById('compChoices')
-const compRock = document.getElementById('compRock');
-const compPaper = document.getElementById('compPaper');
-const compScissors = document.getElementById('compScissors');
-
-const playerScore = document.getElementById('playerScore')
-const compScore = document.getElementById('compScore')
-
-userRock.onclick = function() {
-  playerChoice = 'Rock'
-  $(userPaper).fadeOut(500);
-  $(userScissors).fadeOut(500);
-  $(chooseTxt).fadeOut();
-
-  $(newGameBtn).fadeIn(2000);
-    return playRound(), roundScore()
+user.rock.onclick = () => {
+  playerChoice = 'Rock';
+  userChoice(user.paper, user.scissors);
 }
 
-userPaper.onclick = function() {
-  playerChoice = 'Paper'
-  $(userRock).fadeOut(500);
-  $(userScissors).fadeOut(500);
-  $(chooseTxt).fadeOut();
-
-  $(newGameBtn).fadeIn(2000);
-    return playRound(), roundScore()
+user.paper.onclick = () => {
+  playerChoice = 'Paper';
+  userChoice(user.rock, user.scissors);
 }
 
-userScissors.onclick = function() {
-  playerChoice = 'Scissors'
-  $(userPaper).fadeOut(500);
-  $(userRock).fadeOut(500);
-  $(chooseTxt).fadeOut();
-
-  $(newGameBtn).fadeIn(2000);
-    return playRound(), roundScore()
+user.scissors.onclick = () => {
+  playerChoice = 'Scissors';
+  userChoice(user.rock, user.paper);
 }
-$(compChoices).hide();
-$(newGameBtn).hide();
-$(newSeriesBtn).hide();
-$(compRock).hide();
-$(compPaper).hide();
-$(compScissors).hide();
-compScore.textContent = '-'
-playerScore.textContent = '-'
 
+const userChoice = (choice2, choice3) => {
+  $(choice2).fadeOut(500);
+  $(choice3).fadeOut(500);
+  $(chooseTxt).fadeOut();
+  $(newGameBtn).fadeIn(2000);
+  return playRound(), roundScore()
+}
 
-function playRound() {
-    let computerChoice = computerPlay()
+const initialize = () => {
+  $(compChoices).hide();
+  $(newGameBtn).hide();
+  $(newSeriesBtn).hide();
+  $(comp.rock).hide();
+  $(comp.paper).hide();
+  $(comp.scissors).hide();
+}
+
+const playRound = () => {
+  let computerChoice = computerPlay()
   
+  if(computerChoice === playerChoice) {
+      createMessage = computerChoice + ' vs ' + playerChoice + ', it\'s a tie!';
+    } else if (computerChoice === 'Rock' && playerChoice === 'Paper') {
+      createMessage = playerChoice + ' beats ' + computerChoice + ', you win!'
+    } else if (computerChoice === 'Rock' && playerChoice === 'Scissors') {
+      createMessage = computerChoice + ' beats ' + playerChoice + ', you lose!'
+    } else if (computerChoice === 'Paper' && playerChoice === 'Rock') {
+      createMessage = computerChoice + ' beats ' + playerChoice + ', you lose!'
+    } else if (computerChoice === 'Paper' && playerChoice === 'Scissors') {
+      createMessage = playerChoice + ' beats ' + computerChoice + ', you win!'
+    } else if (computerChoice === 'Scissors' && playerChoice === 'Rock') {
+      createMessage = playerChoice + ' beats ' + computerChoice + ', you win!'
+    } else if (computerChoice === 'Scissors' && playerChoice === 'Paper') {
+      createMessage = computerChoice + ' beats ' + playerChoice + ', you lose!'
+    }
 
-    if(computerChoice === playerChoice) {
-        createMessage = computerChoice + ' vs ' + playerChoice + ', it\'s a tie!';
-      } else if (computerChoice === 'Rock' && playerChoice === 'Paper') {
-        createMessage = playerChoice + ' beats ' + computerChoice + ', you win!'
-      } else if (computerChoice === 'Rock' && playerChoice === 'Scissors') {
-        createMessage = computerChoice + ' beats ' + playerChoice + ', you lose!'
-      } else if (computerChoice === 'Paper' && playerChoice === 'Rock') {
-        createMessage = computerChoice + ' beats ' + playerChoice + ', you lose!'
-      } else if (computerChoice === 'Paper' && playerChoice === 'Scissors') {
-        createMessage = playerChoice + ' beats ' + computerChoice + ', you win!'
-      } else if (computerChoice === 'Scissors' && playerChoice === 'Rock') {
-        createMessage = playerChoice + ' beats ' + computerChoice + ', you win!'
-      } else if (computerChoice === 'Scissors' && playerChoice === 'Paper') {
-        createMessage = computerChoice + ' beats ' + playerChoice + ', you lose!'
-      }
-
-      if(computerChoice === 'Rock') {
-        $(compChoices).show()
-        $(compRock).fadeIn(1000);
-      } else if (computerChoice === 'Paper') {
-        $(compChoices).show()
-        $(compPaper).fadeIn(1000);
-      } else if(computerChoice === 'Scissors') {
-        $(compChoices).show()
-        $(compScissors).fadeIn(1000);
-      }
-
-      return createMessage, alertMessage()
-}
-function alertMessage() {
-        disMsg.textContent = createMessage
-        $(disMsg).fadeIn(2000)   
+    if(computerChoice === 'Rock') {
+      $(compChoices).show()
+      $(comp.rock).fadeIn(1000);
+    } else if (computerChoice === 'Paper') {
+      $(compChoices).show()
+      $(comp.paper).fadeIn(1000);
+    } else if(computerChoice === 'Scissors') {
+      $(compChoices).show()
+      $(comp.scissors).fadeIn(1000);
+    }
+    return createMessage, alertMessage()
 }
 
-function getRanNum() {
-  let ranNum = Math.floor(Math.random() * 3)
-  return ranNum;
+const alertMessage = () => {
+  disMsg.textContent = createMessage
+  $(disMsg).fadeIn(2000)   
 }
 
-function computerPlay() {
+const computerPlay = () => {
   let possOutcome = ['Rock', 'Paper', 'Scissors']
-  let choice = getRanNum()
+  let choice = Math.floor(Math.random() * 3)
 
   for (let i = 0; i < possOutcome.length; i++) {
     if(choice === i)
@@ -118,79 +103,63 @@ function computerPlay() {
   }
 }
 
-function roundScore() {
-          
-            if(createMessage.includes('you lose!')){
-              losses +=1
-              rounds += 1
-              
-              compScore.textContent = losses
-            } else if(createMessage.includes('you win!')){
-              wins +=1 
-              rounds += 1
-              
-              playerScore.textContent = wins
-            } else if(createMessage.includes('tie')){
-              rounds += 1
-              
-            }   
+const roundScore = () => {   
+  if(createMessage.includes('you lose!')){
+    comp.wins +=1
+    rounds += 1            
+    comp.score.textContent = comp.wins
+  } else if(createMessage.includes('you win!')){
+    user.wins +=1 
+    rounds += 1           
+    user.score.textContent = user.wins
+  } else if(createMessage.includes('tie')){
+    rounds += 1             
+  }   
 
-            if(rounds === 5 && wins > losses) {
-
-                $(newGameBtn).hide();
-                disMsg.textContent = 'CONGRATULATIONS! YOU WON THE SERIES!'
-                $(newSeriesBtn).fadeIn()
-                newSeriesBtn.textContent = 'LETS GO AGAIN!'
-            } else if(rounds === 5 && wins < losses) {
-
-                $(newGameBtn).hide();
-                disMsg.textContent = 'BOO! LOOKS LIKE THE COMPUTER TOOK THE SERIES!'
-                $(newSeriesBtn).fadeIn()
-                newSeriesBtn.textContent = 'TRY AGAIN!'
-            } else if (rounds === 5 && wins === losses) {
-
-                $(newGameBtn).hide();
-                disMsg.textContent = 'SO CLOSE! LOOKS LIKE ITS A TIE!'
-                $(newSeriesBtn).fadeIn()
-                newSeriesBtn.textContent = 'TRY AGAIN!'
-            }
-    
+  if(rounds === 5 && user.wins > comp.wins) {
+    newSeries('CONGRATULATIONS! YOU WON THE SERIES!', 'LETS GO AGAIN!')
+  } else if(rounds === 5 && user.wins < comp.wins) {
+    newSeries('BOO! LOOKS LIKE THE COMPUTER TOOK THE SERIES!', 'TRY AGAIN!')
+  } else if (rounds === 5 && user.wins === comp.wins) {
+    newSeries('SO CLOSE! LOOKS LIKE ITS A TIE!', 'TRY AGAIN!')
+  }  
 }
 
-newGameBtn.onclick = function() {
-  $(chooseTxt).fadeIn();
-  
-  $(userScissors).fadeIn();
-  $(userRock).fadeIn();
-  $(userPaper).fadeIn();
+const newSeries = (displayMsg, btnMsg) => {
+  $(newGameBtn).hide();
+  $(newSeriesBtn).fadeIn()
+  disMsg.textContent = displayMsg;
+  newSeriesBtn.textContent = btnMsg;
+}
 
-  $(compChoices).hide()
-  $(compRock).hide();
-  $(compScissors).hide();
-  $(compPaper).hide();
-
+newGameBtn.onclick = () => {
+  clearBoard();
   $(newGameBtn).fadeOut(10)
-  $(disMsg).hide(); 
-  
 }
-newSeriesBtn.onclick = function() {
-  $(chooseTxt).fadeIn();
-  $(userScissors).fadeIn();
-  $(userRock).fadeIn();
-  $(userPaper).fadeIn();
 
-  $(compChoices).hide()
-  $(compRock).hide();
-  $(compScissors).hide();
-  $(compPaper).hide();
-  $(disMsg).hide(); 
+newSeriesBtn.onclick = () => {
+  clearBoard();
   $(newSeriesBtn).hide();
   
-
   rounds = 0;
-  wins = 0;
-  losses = 0;
+  user.wins = 0;
+  comp.wins = 0;
 
-  compScore.textContent = '-'
-  playerScore.textContent = '-'
+  comp.score.textContent = '-'
+  user.score.textContent = '-'
 }
+
+const clearBoard = () => {
+  $(chooseTxt).fadeIn();
+  $(user.scissors).fadeIn();
+  $(user.rock).fadeIn();
+  $(user.paper).fadeIn();
+
+  $(compChoices).hide()
+  $(comp.rock).hide();
+  $(comp.scissors).hide();
+  $(comp.paper).hide();
+  $(disMsg).hide(); 
+}
+
+initialize()

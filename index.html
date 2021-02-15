@@ -18,52 +18,42 @@
 </head>
 <body>
     
-        <div id="gameArea" class="container">
-            <p id="title">RvPvS</p>
-            <p>VERSION 2.0</p>
-            <!-- <input type="text" name="Player Selection" id="plyrSelect">
-            <button id="select" class="btn btn-dark">Make Selection</button> -->
-            <div class="row">
+    <div id="gameArea" class="container">
+        <p id="title">RvPvS</p>
+        <p>VERSION 2.0</p>
+        <!-- <input type="text" name="Player Selection" id="plyrSelect">
+        <button id="select" class="btn btn-dark">Make Selection</button> -->
+        <div class="row">
                     
-                <div id="playerChoices" class="col">
-                        <img id="userRock" src="./user_rock3.png" alt="" class="img-fluid">
-                        <img id="userPaper" src="./user_paper3.png" alt="" class="img-fluid"> 
-                         <img id="userScissors" src="./user_scissors3.png" alt="" class="img-fluid"> 
-                    </div>
+            <div id="playerChoices" class="col">
+                    <img id="userRock" src="./user_rock3.png" alt="" class="img-fluid">
+                    <img id="userPaper" src="./user_paper3.png" alt="" class="img-fluid"> 
+                    <img id="userScissors" src="./user_scissors3.png" alt="" class="img-fluid"> 
+                </div>
                         
-                    <div id="compChoices" class="col">
-                    <!--Computer choice will be hidden on page load-->
-                        <img id="compRock" src="./comp_rock3.png" alt="" class="img-fluid">
-                        <img id="compPaper" src="./comp_paper3.png" alt="" class="img-fluid">
-                        <img id="compScissors" src="./comp_scissors3.png" alt="" class="img-fluid">
-                    </div>
+                <div id="compChoices" class="col">
+                <!--Computer choice will be hidden on page load-->
+                    <img id="compRock" src="./comp_rock3.png" alt="" class="img-fluid">
+                    <img id="compPaper" src="./comp_paper3.png" alt="" class="img-fluid">
+                    <img id="compScissors" src="./comp_scissors3.png" alt="" class="img-fluid">
+                </div>
                 
-            </div>
-    
-            <div>
-                <p id="choose">CHOOSE YOUR FIGHTER!</p>
-    
-                <button id="newGame" class="btn btn-dark">PLAY AGAIN</button>
-                
-            </div>
-            <button id="newSeries" class="btn btn-dark"></button>
-            <span></span>
-            
-            <div id="scoreBoard">
-                <p id="series">BEST OF 5 SERIES</p>
-           
-                
-                
-                <div id="playerBoard"><p>PLAYER</p><span id="playerScore"></span></div>
-                
-                <div id="compBoard"><p>COMPUTER</p><span id="compScore"></span></div> 
-            </div>
-    
-            
-    
         </div>
     
+        <div>
+            <p id="choose">CHOOSE YOUR FIGHTER!</p>               
+        </div>
 
+        <span></span>
+        <button id="newGame" class="btn btn-dark">PLAY AGAIN</button>
+        <button id="newSeries" class="btn btn-dark"></button>
+                        
+        <div id="scoreBoard">
+            <p id="series">BEST OF 5 SERIES</p> 
+            <div id="playerBoard"><p>PLAYER</p><span id="playerScore">-</span></div>               
+            <div id="compBoard"><p>COMPUTER</p><span id="compScore">-</span></div> 
+        </div>   
+    </div>
     <script src="/index.js"></script>
 </body>
 </html>
