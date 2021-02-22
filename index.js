@@ -11,7 +11,7 @@ const compChoices = document.getElementById('compChoices');
 const user = {
   rock: document.getElementById('userRock'),
   paper: document.getElementById('userPaper'),
-  scissors: userScissors = document.getElementById('userScissors'),
+  scissors: document.getElementById('userScissors'),
   score: document.getElementById('playerScore'),
   wins: 0
 };
